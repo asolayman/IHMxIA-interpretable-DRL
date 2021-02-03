@@ -19,7 +19,7 @@ python3 run.py
 
 ### Saliency Maps
 
-![Vidéo](https://github.com/asolayman/IHMxIA-interpretable-DRL/blob/main/video/video_30.mp4)
+[Vidéo](https://github.com/asolayman/IHMxIA-interpretable-DRL/blob/main/video/video_30.mp4)
 
 ![Gif](https://github.com/asolayman/IHMxIA-interpretable-DRL/blob/main/video/video_30.gif)
 
