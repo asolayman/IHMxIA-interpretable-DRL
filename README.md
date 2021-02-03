@@ -21,11 +21,12 @@ python3 run.py
 
 [Vidéo](https://github.com/asolayman/IHMxIA-interpretable-DRL/blob/main/video/video_30.mp4)
 
-![Gif](https://github.com/asolayman/IHMxIA-interpretable-DRL/blob/main/video/video_30.gif)
+<img src="https://github.com/asolayman/IHMxIA-interpretable-DRL/blob/main/video/video_30.gif" alt="drawing" width="1120" height="640"/>
 
 ### Projection Umap
 
-Param : 25, 0.7
+Paramètres : `n_neighbors=25, min_dist=0.7`
 ![Projection 1](https://github.com/asolayman/IHMxIA-interpretable-DRL/blob/main/projection1.png)
-Param : 7, 0.4
+
+Paramètres : `n_neighbors=7, min_dist=0.4`
 ![Projection 2](https://github.com/asolayman/IHMxIA-interpretable-DRL/blob/main/projection2.png)
