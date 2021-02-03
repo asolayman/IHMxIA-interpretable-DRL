@@ -17,8 +17,15 @@ python3 run.py
 
 ## Visualisation
 
-![demo](https://github.com/asolayman/DataViz-World-ressources/blob/main/demo.gif)
+### Saliency Maps
 
-![demo](https://github.com/asolayman/DataViz-World-ressources/blob/main/demo.gif)
+![Vidéo](https://github.com/asolayman/IHMxIA-interpretable-DRL/blob/main/video/video_30.mp4)
 
-![demo](https://github.com/asolayman/DataViz-World-ressources/blob/main/demo.gif)
+![Gif](https://github.com/asolayman/IHMxIA-interpretable-DRL/blob/main/video/video_30.gif)
+
+### Projection Umap
+
+Param : 25, 0.7
+![Projection 1](https://github.com/asolayman/IHMxIA-interpretable-DRL/blob/main/projection1.png)
+Param : 7, 0.4
+![Projection 2](https://github.com/asolayman/IHMxIA-interpretable-DRL/blob/main/projection2.png)

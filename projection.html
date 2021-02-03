@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="https://d3js.org/d3.v6.min.js"></script>
+
+    <link href="//fonts.googleapis.com/css?family=Raleway:400,300,600" rel="stylesheet" type="text/css">
+
+</head>
+<body style="text-align: center">
+
+<h2> TP IHMxIA: Projection</h2>
+
+<div style="width: 80%;height: 800px;display: inline-block;text-align: center">
+    <svg style="width: 100%;height: 100%; border: thin #555555 solid;display: inline-block" id="svg1"></svg>
+</div>
+
+</body>
+
+
+<script type="text/javascript">
+
+    let metaData
+
+    async function load_data_light() {
+        return await d3.csv("projection.csv")
+    }
+
+
+    load_data_light().then(r => init(r));
+
+
+    async function init(data) {
+
+        console.log(data);
+
+        metaData = data
+
+        plot(d3.select("#svg1"), data)
+
+
+        // plot(data[0], labels1, d3.select("#svg1"), "UMAP", [10, 2, 0.25], sv1)
+
+
+    }
+
+
+    async function plot(svg, data) {
+        let [x, y] = await new Promise(res => res(get_scales(data.map(d => [parseFloat(d["x"]), parseFloat(d["y"])]))));
+
+
+        let colScale = function (d) {
+            return "steelblue"
+        }
+
+        if (data.columns.length == 3) {
+            let mapped = data.map(d => d["arg"])
+            let temp = getUnique(mapped)
+
+            if (temp.length > 5) {
+                colScale = d3
+                    .scaleLinear()
+                    .domain(d3.extent(mapped, d => d))
+                    .interpolate(d3.interpolateBrBG(t));
+            } else {
+                colScale = d3.scaleOrdinal(d3.schemeSet1)
+            }
+        }
+
+
+        const gs = svg.selectAll(".point")
+            .data(data)
+            .enter()
+            .append("circle")
+            .attr("class", "point")
+            .attr("r", 6)
+            .attr("cx", d => x(parseFloat(d["x"])))
+            .attr("cy", d => y(parseFloat(d["y"])))
+            .attr("fill", d => colScale(d["arg"]))
+            .attr("stroke", "rgba(19,19,19,0.51)")
+            .attr("stroke-width", "1")
+
+    }
+
+    get_scales = function (data) {
+        let x_extent = d3.extent(data, d => parseFloat(d[0]));
+        let y_extent = d3.extent(data, d => parseFloat(d[1]));  
+
+        let x_span = x_extent[1] - x_extent[0];
+        let y_span = y_extent[1] - y_extent[0];
+        const offset = Math.abs(x_span - y_span) / 2;
+
+        let svg1 = document.getElementById('svg1');
+        let x = svg1.clientWidth
+        let y = svg1.clientHeight
+
+
+        if (x_span > y_span) {
+            x_extent[0] -= offset;
+            x_extent[1] += offset;
+        } else {
+            y_extent[0] -= offset;
+            y_extent[1] += offset;
+        }
+
+        return [
+            d3.scaleLinear().domain(x_extent).rangeRound([x * 0.05, x - x * 0.10]).nice(),
+            d3.scaleLinear().domain(y_extent).rangeRound([y * 0.05, y - y * 0.05]).nice().clamp(true),
+        ]
+    }
+
+
+    function getUnique(data) {
+
+        let res = {}
+        console.log(data)
+        for (let i = 0; i < data.length; i++) {
+            res[data[i]] = "bob"
+        }
+
+        return Object.keys(res)
+    }
+
+    // $("#bob").on('click', function () {
+    //     downloadSVG();
+    //
+    // })
+</script>
+</html>
